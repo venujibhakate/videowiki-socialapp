@@ -47,21 +47,39 @@ class Profile extends Component {
       loading: false
     });
     const token = localStorage.getItem("token");
-    console.log(localStorage.getItem("token"), "tokan is ..");
+    // console.log(localStorage.getItem("token"), "tokan is ..");
     // const decoded = jwt_decode(token)
     // console.log(decoded)
 
     axios
-      .post("http://localhost:8000/profile_im", {
+        .post("http://localhost:8000/profile_image", {
         header: { imageUrl: file.secure_url, token: token }
       })
       .then(res => {
-        console.log(res);
+        console.log("post :"+res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+    
+      axios
+        .get("http://localhost:8000/get_profile", {
+          params: { imageUrl: file.secure_url, token: token }
+      })
+      .then(res => {
+        console.log(res ,token);
       })
       .catch(err => {
         console.log(err);
       });
   };
+
+  
+
+  
+  
+
 
   render() {
     return (
@@ -128,7 +146,7 @@ class Profile extends Component {
           <div>
             <Link to="/edit">
              
-              <button variant="primary">Edit profile</button>
+              <button className="button" variant="primary">Edit profile</button>
             </Link>
           </div>
         </div>
@@ -137,91 +155,5 @@ class Profile extends Component {
   }
 }
 
-// function Profile() {
-//   const [image, setImage] = useState(demo)
-//   const [loading, setLoading] = useState(false)
 
-//   const uploadImage = async e => {
-//     const files = e.target.files
-//     const data = new FormData()
-//     data.append('file', files[0])
-//     data.append('upload_preset', 'venu18')
-//     setLoading(true)
-//     const res = await fetch(
-//       'https://api.cloudinary.com/v1_1/coder-202/image/upload',
-//       {
-//         method: 'POST',
-//         body: data
-//       }
-//     )
-//     const file = await res.json()
-//     setImage(file.secure_url)
-//     console.log(file.secure_url)
-//     setLoading(false)
-//     const token = localStorage.getItem('token');
-//     console.log(localStorage.getItem('token'), "tokan is ..")
-//     // const decoded = jwt_decode(token)
-//     // console.log(decoded)
-
-//     axios.post('http://localhost:8000/profile_im',{header:{imageUrl:file.secure_url,token:token }}
-//     ).then(res =>{
-//       console.log(res)
-//     }).catch(err =>{
-//       console.log(err)
-//     })
-//   }
-
-//   return (
-//     <div>
-//       <div>
-//         <Navbar expand="lg" variant="light" style={{ backgroundColor: '#3578E5' }}>
-//           <IconButton
-//             color="inherit"
-//           >
-//             <HomeIcon />
-//           </IconButton>
-//           <span>Home</span>
-//           <div className="container" style={{ width: '10px' }}>
-//             <IconButton color="inherit">
-//               <FavoriteBorderIcon />
-//             </IconButton>
-//             <IconButton color="inherit">
-//               <Link to="/CreatePost" ><AddIcon /> </Link>
-//             </IconButton>
-//             <IconButton color="inherit">
-//               <Link to="/profile" > <AccountCircleIcon /></Link>
-//             </IconButton>
-//           </div>
-//         </Navbar>
-//       </div>
-
-//       <div className="profile">
-
-//         {/* <label className='Icon' for="file">
-//           < EditIcon color='primary' />
-//         </label> */}
-//         <input type="file"
-//           multiple='true'
-//           id="file"
-//           style={{ display: 'none' }}
-//           name='file'
-//           onChange={ uploadImage}/>
-//         {loading ? (
-//           <h3>Loading...</h3>
-//         ) : (
-//             <div className='box'>
-//               <img src={image} style={{ width: '150px', borderRadius: '50%', height: '150px', }} />
-//             </div>
-//           )}
-//            <label className='Icon' for="file">
-//           < EditIcon color='primary' />
-//         </label>
-//         <div>
-//         <Link to="/edit"> <button variant="primary">Edit profile</button></Link>
-//       </div>
-//       </div>
-
-//     </div>
-//   )
-// }
 export default Profile;

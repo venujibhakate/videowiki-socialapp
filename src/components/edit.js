@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Card from '@material-ui/core/Card';
 // import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import { Navbar } from 'react-bootstrap'
+import { Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import HomeIcon from '@material-ui/icons/Home';
 import { IconButton } from '@material-ui/core';
@@ -128,19 +128,19 @@ class Edit extends Component {
                     </Navbar>
                 </div>
                 <div className="class" style={{ marginTop: '3%' }}>
-                    <Card className="card" >
-                        <h3>Edit profile</h3>
+                    <Card className="card" style={{ marginTop: "10%" }} >
+                        <h3>Edit Profile</h3>
                         {/* <Avatar src="/broken-image.jpg" /> */}
                         <CardContent>
-                            <form noValidate onSubmit={this.handleSubmit}>
-                                <div className="form-group">
-                                    <input
-                                        onChange={this.onChange}
-                                        type="education"
+                            <form noValidate onSubmit={this.handleSubmit} >
+                                <div className="form-group">   
+                                <input type="tel"
                                         name="education"
+                                        // label="education"
                                         placeholder="Education"
-                                        className="form-control"
-                                        value={this.state.education} />
+                                         required
+                                        value={this.state.education}
+                                        onChange={this.onChange} />
                                 </div>
                                 <div style={{ color: "red" }}>{this.state.errors.education}</div>
                                 <div className="form-group">
@@ -148,7 +148,7 @@ class Edit extends Component {
                                         name="phone"
                                         label="Phone Number"
                                         placeholder="Enter your Phone Number"
-                                        pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required
+                                         required
                                         value={this.state.phone_number}
                                         onChange={this.onChange} />
                                 </div>
@@ -157,6 +157,7 @@ class Edit extends Component {
                                     <input type="email"
                                         onChange={this.onChange}
                                         name="email"
+                                        label="email"
                                         value={this.state.email}
                                         className="form-control"
                                         placeholder="Enter email" />
@@ -174,28 +175,32 @@ class Edit extends Component {
                                 </div>
                                 <div className="form-group">
 
-                                    <input
-                                        onChange={this.onChange}
+                                <input type="tel"
                                         name="address"
-                                        type="address"
-                                        label="Address"
-                                        className="form-control"
-                                        placeholder="Enter your Address"
-                                        value={this.state.address} />
+                                        label="Phone Number"
+                                        placeholder="Enter your address"
+                                         required
+                                        value={this.state.address}
+                                        onChange={this.onChange} />
                                 </div>
                                 <div style={{ color: "red" }}>{this.state.errors.address}</div>
                                 <div className="form-group">
-                                    <input
-                                        onChange={this.onChange}
+                                <input type="tel"
                                         name="bio"
-                                        type="bio"
-                                        label="Bio"
-                                        className="form-control"
-                                        placeholder="Enter your Bio"
-                                        value={this.state.bio} />
+                                        label="Phone Number"
+                                        placeholder="Enter your bio"
+                                         required
+                                        value={this.state.bio}
+                                        onChange={this.onChange} />
                                 </div>
-
-                                <button type="submit" className="btn btn-primary btn-block" disabled={!isEnabled}>Submit</button>
+                                <button
+                                    type="submit"
+                                    className="btn btn-primary btn-block"
+                                    disabled={!isEnabled}
+                                    style={{ height: "40px", width: "90px" }}
+                                >
+                                    Submit
+                                </button>
                             </form>
                         </CardContent>
                     </Card>
@@ -206,13 +211,6 @@ class Edit extends Component {
     }
 }
 export default Edit;
-
-
-
-
-
-
-
 
 
 
